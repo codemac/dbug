@@ -1,0 +1,49 @@
+;;; -*- mode: org; -*-
+
+* dbug -- a vcs-based bug tracker
+
+Decentralized is *not* the right word for this.
+
+dbug is a centralized bug / issues database that uses a vcs (git or
+otherwise) to store it's database. Using vcs conflict resolution, dbug
+ensures there are no comment or issue conflicts.
+
+There is one daemon that runs, and then any number of user
+interfaces. Ideally there will be an emacs interface, as that's
+something I truly enjoy using.
+
+* Format
+
+The format of dbug is merely Maildir. This should make it easy to
+implement editors / UI.
+
+Each bug has the following layout
+
+* Configuration
+
+dbug can be configured by adding a dbug.conf file to your
+repository. You configure the following entities:
+
+- vcs :: which vcs to use for your project, only one can be supported
+     at a time. Default is git.
+
+- remote :: the vcs endpoint to sync with. Currently only one is
+     supported. Each VCS will have it's own default. Defaults to origin for git.
+
+- branch :: which branch to use for synchronization. Defaults to master for git.
+
+- interval :: how often to synchronize. Defaults to 0
+
+- editor :: which editor to use for conflict resolution. Defaults to $EDITOR
+
+* Usage
+
+- dbug pull :: pull issues from remote
+
+- dbug push :: push issues to remote
+
+- dbug list :: list all current issues
+
+- dbug browse :: launch browser UI
+
+- dbug edit :: edit issue
